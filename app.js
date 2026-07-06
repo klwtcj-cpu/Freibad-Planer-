@@ -24,9 +24,7 @@ document.getElementById("generateButton").addEventListener("click", function () 
     if (document.getElementById("spaet").checked) schichten.push("Spätschicht");
 
     // Ausgabe
-    document.getElementById("status").innerHTML =
-        "<b>Mitarbeiter:</b> " + mitarbeiter.join(", ") +
-        "<br><b>Wochentage:</b> " + wochentage.join(", ") +
-        "<br><b>Schichten:</b> " + schichten.join(", ");
-
-});
+document.getElementById("status").innerHTML =
+    "<b>Mitarbeiter:</b> " + mitarbeiter.join(", ") +
+    "<br><b>Wochentage:</b> " + wochentage.join(", ") +
+    "<br><b>Schichten:</b> " + schichten.join(", ");
