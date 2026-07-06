@@ -2,6 +2,7 @@ document.getElementById("generateButton").addEventListener("click", function () 
 
     let mitarbeiter = [];
     let wochentage = [];
+    let schichten = [];
 
     // Mitarbeiter
     if (document.getElementById("oli").checked) mitarbeiter.push("Oli");
@@ -18,8 +19,14 @@ document.getElementById("generateButton").addEventListener("click", function () 
     if (document.getElementById("samstag").checked) wochentage.push("Samstag");
     if (document.getElementById("sonntag").checked) wochentage.push("Sonntag");
 
+    // Schichten
+    if (document.getElementById("frueh").checked) schichten.push("Frühschicht");
+    if (document.getElementById("spaet").checked) schichten.push("Spätschicht");
+
+    // Ausgabe
     document.getElementById("status").innerHTML =
         "<b>Mitarbeiter:</b> " + mitarbeiter.join(", ") +
-        "<br><b>Wochentage:</b> " + wochentage.join(", ");
+        "<br><b>Wochentage:</b> " + wochentage.join(", ") +
+        "<br><b>Schichten:</b> " + schichten.join(", ");
 
 });
