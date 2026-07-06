@@ -8,6 +8,5 @@ document.getElementById("generateButton").addEventListener("click", function () 
     if (document.getElementById("dieter").checked) mitarbeiter.push("Dieter");
 
     document.getElementById("status").innerHTML =
-        "Ausgewählt: " + mitarbeiter.join(", ");
-
+        "Ausgewählte Mitarbeiter: " + mitarbeiter.join(", ");
 });
