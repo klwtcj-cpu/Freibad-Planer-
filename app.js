@@ -28,3 +28,5 @@ document.getElementById("status").innerHTML =
     "<b>Mitarbeiter:</b> " + mitarbeiter.join(", ") +
     "<br><b>Wochentage:</b> " + wochentage.join(", ") +
     "<br><b>Schichten:</b> " + schichten.join(", ");
+
+});
