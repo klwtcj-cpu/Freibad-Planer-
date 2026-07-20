@@ -3,6 +3,54 @@ document.getElementById("generateButton").addEventListener("click", function () 
     // Mitarbeiter
     let mitarbeiter = [];
 
+if (document.getElementById("oli").checked) {
+    mitarbeiter.push({
+        name: "Oli",
+        prozent: 100,
+        schichten: 0,
+        arbeitstage: 0,
+        freiBis: null,
+        wochenenden: 0,
+        letzteSchicht: ""
+    });
+}
+
+if (document.getElementById("andi").checked) {
+    mitarbeiter.push({
+        name: "Andi",
+        prozent: 100,
+        schichten: 0,
+        arbeitstage: 0,
+        freiBis: null,
+        wochenenden: 0,
+        letzteSchicht: ""
+    });
+}
+
+if (document.getElementById("chiara").checked) {
+    mitarbeiter.push({
+        name: "Chiara",
+        prozent: 100,
+        schichten: 0,
+        arbeitstage: 0,
+        freiBis: null,
+        wochenenden: 0,
+        letzteSchicht: ""
+    });
+}
+
+if (document.getElementById("dieter").checked) {
+    mitarbeiter.push({
+        name: "Dieter",
+        prozent: 100,
+        schichten: 0,
+        arbeitstage: 0,
+        freiBis: null,
+        wochenenden: 0,
+        letzteSchicht: ""
+    });
+}
+
     if (document.getElementById("oli").checked) mitarbeiter.push("Oli");
     if (document.getElementById("andi").checked) mitarbeiter.push("Andi");
     if (document.getElementById("chiara").checked) mitarbeiter.push("Chiara");
@@ -47,10 +95,26 @@ for (let zeile of zeilen) {
         saison.push(new Date(datum));
         datum.setDate(datum.getDate() + 1);
     }
+function findeMitarbeiter(mitarbeiter) {
 
+    let bester = null;
+
+    for (let person of mitarbeiter) {
+
+        if (bester === null) {
+            bester = person;
+            continue;
+        }
+
+        if (person.schichten < bester.schichten) {
+            bester = person;
+        }
+    }
+
+    return bester;
+}
     // Dienstplan
     let dienstplan = [];
-    let index = 0;
 
     for (let tag of saison) {
 
@@ -60,44 +124,10 @@ for (let zeile of zeilen) {
 
             if (mitarbeiter.length === 0) break;
 
-            let person = mitarbeiter[index];
+            let person = findeMitarbeiter(mitarbeiter);
             let datumText = tag.toLocaleDateString("de-DE");
 
-while (
-    urlaub[person] &&
-    urlaub[person].includes(datumText)
-) {
 
-    index++;
-
-    if (index >= mitarbeiter.length) {
-        index = 0;
-    }
-if (
-    urlaub[person] &&
-    urlaub[person].length >= mitarbeiter.length
-) {
-    person = "Keine Person verfügbar";
-    break;
-}
-    person = mitarbeiter[index];
-}
-
-            while (heuteVergeben.includes(person)) {
-
-                index++;
-
-                if (index >= mitarbeiter.length) {
-                    index = 0;
-                }
-
-                person = mitarbeiter[index];
-
-                if (heuteVergeben.length >= mitarbeiter.length) {
-                    person = "Keine Person verfügbar";
-                    break;
-                }
-            }
 
             dienstplan.push({
     datum: tag.toLocaleDateString("de-DE"),
@@ -109,12 +139,9 @@ if (
             if (person !== "Keine Person verfügbar") {
 
                 heuteVergeben.push(person);
+                person.schichten++;
+person.arbeitstage++;
 
-                index++;
-
-                if (index >= mitarbeiter.length) {
-                    index = 0;
-                }
 }
 
             }
