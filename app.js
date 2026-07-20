@@ -45,13 +45,11 @@ for (let tag of saison) {
 
 document.getElementById("status").innerHTML = text;
 
-return;
-
     // Dienstplan erzeugen
 let dienstplan = [];
 let index = 0;
 
-for (let tag of wochentage) {
+for (let tag of saison) {
 
     let heuteVergeben = [];
 
@@ -74,7 +72,9 @@ for (let tag of wochentage) {
             }
         }
 
-        dienstplan.push(tag + " - " + schicht + ": " + person);
+        let datum = tag.toLocaleDateString("de-DE");
+
+dienstplan.push(datum + " - " + schicht + ": " + person);
 
         if (person !== "Keine Person verfügbar") {
             heuteVergeben.push(person);
