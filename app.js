@@ -33,16 +33,38 @@ let dienstplan = [];
 let index = 0;
 
 for (let tag of wochentage) {
+
+    let heuteVergeben = [];
+
     for (let schicht of schichten) {
 
         let person = mitarbeiter[index];
 
+        while (heuteVergeben.includes(person)) {
+            index++;
+
+            if (index >= mitarbeiter.length) {
+                index = 0;
+            }
+
+            person = mitarbeiter[index];
+
+            if (heuteVergeben.length >= mitarbeiter.length) {
+                person = "Keine Person verfügbar";
+                break;
+            }
+        }
+
         dienstplan.push(tag + " - " + schicht + ": " + person);
 
-        index++;
+        if (person !== "Keine Person verfügbar") {
+            heuteVergeben.push(person);
 
-        if (index >= mitarbeiter.length) {
-            index = 0;
+            index++;
+
+            if (index >= mitarbeiter.length) {
+                index = 0;
+            }
         }
     }
 }
