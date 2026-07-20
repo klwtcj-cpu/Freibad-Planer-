@@ -14,6 +14,28 @@ document.getElementById("generateButton").addEventListener("click", function () 
     if (document.getElementById("frueh").checked) schichten.push("Frühschicht");
     if (document.getElementById("spaet").checked) schichten.push("Spätschicht");
 
+    let urlaubText = document.getElementById("urlaub").value;
+
+let urlaub = {};
+
+let zeilen = urlaubText.split("\n");
+
+for (let zeile of zeilen) {
+
+    if (!zeile.includes(":")) continue;
+
+    let teile = zeile.split(":");
+
+    let name = teile[0].trim();
+    let datum = teile[1].trim();
+
+    if (!urlaub[name]) {
+        urlaub[name] = [];
+    }
+
+    urlaub[name].push(datum);
+}
+
     // Saison
     let start = new Date(2027, 4, 1);
     let ende = new Date(2027, 8, 10);
@@ -39,6 +61,27 @@ document.getElementById("generateButton").addEventListener("click", function () 
             if (mitarbeiter.length === 0) break;
 
             let person = mitarbeiter[index];
+            let datumText = tag.toLocaleDateString("de-DE");
+
+while (
+    urlaub[person] &&
+    urlaub[person].includes(datumText)
+) {
+
+    index++;
+
+    if (index >= mitarbeiter.length) {
+        index = 0;
+    }
+if (
+    urlaub[person] &&
+    urlaub[person].length >= mitarbeiter.length
+) {
+    person = "Keine Person verfügbar";
+    break;
+}
+    person = mitarbeiter[index];
+}
 
             while (heuteVergeben.includes(person)) {
 
@@ -72,6 +115,7 @@ document.getElementById("generateButton").addEventListener("click", function () 
                 if (index >= mitarbeiter.length) {
                     index = 0;
                 }
+}
 
             }
 
