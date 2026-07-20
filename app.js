@@ -30,10 +30,20 @@ document.getElementById("status").innerHTML =
     "<br><b>Schichten:</b> " + schichten.join(", ");
     // Dienstplan erzeugen
 let dienstplan = [];
+let index = 0;
 
 for (let tag of wochentage) {
     for (let schicht of schichten) {
-        dienstplan.push(tag + " - " + schicht);
+
+        let person = mitarbeiter[index];
+
+        dienstplan.push(tag + " - " + schicht + ": " + person);
+
+        index++;
+
+        if (index >= mitarbeiter.length) {
+            index = 0;
+        }
     }
 }
 document.getElementById("status").innerHTML +=
