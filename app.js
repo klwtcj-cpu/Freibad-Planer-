@@ -1,6 +1,7 @@
 document.getElementById("generateButton").addEventListener("click", function () {
 
     let mitarbeiter = [];
+let prozente = {};
     let wochentage = [];
     let schichten = [];
 
