@@ -4,6 +4,18 @@ document.getElementById("generateButton").addEventListener("click", function () 
 let prozente = {};
     let wochentage = [];
     let schichten = [];
+    let start = new Date(2027, 4, 1);   // 01.05.2027
+let ende = new Date(2027, 8, 10);   // 10.09.2027
+
+let saison = [];
+let datum = new Date(start);
+
+while (datum <= ende) {
+
+    saison.push(new Date(datum));
+
+    datum.setDate(datum.getDate() + 1);
+}
 
     // Mitarbeiter
     if (document.getElementById("oli").checked) mitarbeiter.push("Oli");
@@ -25,10 +37,16 @@ let prozente = {};
     if (document.getElementById("spaet").checked) schichten.push("Spätschicht");
 
     // Ausgabe
-document.getElementById("status").innerHTML =
-    "<b>Mitarbeiter:</b> " + mitarbeiter.join(", ") +
-    "<br><b>Wochentage:</b> " + wochentage.join(", ") +
-    "<br><b>Schichten:</b> " + schichten.join(", ");
+let text = "";
+
+for (let tag of saison) {
+    text += tag.toLocaleDateString("de-DE") + "<br>";
+}
+
+document.getElementById("status").innerHTML = text;
+
+return;
+
     // Dienstplan erzeugen
 let dienstplan = [];
 let index = 0;
