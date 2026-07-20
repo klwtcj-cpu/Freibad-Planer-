@@ -56,13 +56,11 @@ document.getElementById("generateButton").addEventListener("click", function () 
                 }
             }
 
-            dienstplan.push(
-                tag.toLocaleDateString("de-DE") +
-                " – " +
-                schicht +
-                ": " +
-                person
-            );
+            dienstplan.push({
+    datum: tag.toLocaleDateString("de-DE"),
+    schicht: schicht,
+    person: person
+});
 
             if (person !== "Keine Person verfügbar") {
 
@@ -93,20 +91,11 @@ document.getElementById("generateButton").addEventListener("click", function () 
 
 for (let eintrag of dienstplan) {
 
-    let teile = eintrag.split(" – ");
-
-    let datum = teile[0];
-
-    let rest = teile[1].split(": ");
-
-    let schicht = rest[0];
-    let person = rest[1];
-
     html += `
     <tr>
-        <td>${datum}</td>
-        <td>${schicht}</td>
-        <td>${person}</td>
+        <td>${eintrag.datum}</td>
+        <td>${eintrag.schicht}</td>
+        <td>${eintrag.person}</td>
     </tr>
     `;
 }
