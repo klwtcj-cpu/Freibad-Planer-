@@ -80,8 +80,39 @@ document.getElementById("generateButton").addEventListener("click", function () 
 
     }
 
-    document.getElementById("status").innerHTML =
-        "<b>Dienstplan (" + dienstplan.length + " Schichten)</b><br><br>" +
-        dienstplan.join("<br>");
+    let html = `
+<h3>Dienstplan (${dienstplan.length} Schichten)</h3>
+
+<table>
+<tr>
+    <th>Datum</th>
+    <th>Schicht</th>
+    <th>Mitarbeiter</th>
+</tr>
+`;
+
+for (let eintrag of dienstplan) {
+
+    let teile = eintrag.split(" – ");
+
+    let datum = teile[0];
+
+    let rest = teile[1].split(": ");
+
+    let schicht = rest[0];
+    let person = rest[1];
+
+    html += `
+    <tr>
+        <td>${datum}</td>
+        <td>${schicht}</td>
+        <td>${person}</td>
+    </tr>
+    `;
+}
+
+html += "</table>";
+
+document.getElementById("status").innerHTML = html;
 
 });
