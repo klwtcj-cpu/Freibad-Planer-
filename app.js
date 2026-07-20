@@ -58,6 +58,7 @@ document.getElementById("generateButton").addEventListener("click", function () 
 
             dienstplan.push({
     datum: tag.toLocaleDateString("de-DE"),
+    wochentag: tag.toLocaleDateString("de-DE", { weekday: "long" }),
     schicht: schicht,
     person: person
 });
@@ -84,8 +85,9 @@ document.getElementById("generateButton").addEventListener("click", function () 
 <table>
 <tr>
     <th>Datum</th>
-    <th>Schicht</th>
-    <th>Mitarbeiter</th>
+<th>Wochentag</th>
+<th>Schicht</th>
+<th>Mitarbeiter</th>
 </tr>
 `;
 
@@ -94,8 +96,9 @@ for (let eintrag of dienstplan) {
     html += `
     <tr>
         <td>${eintrag.datum}</td>
-        <td>${eintrag.schicht}</td>
-        <td>${eintrag.person}</td>
+<td>${eintrag.wochentag}</td>
+<td>${eintrag.schicht}</td>
+<td>${eintrag.person}</td>
     </tr>
     `;
 }
