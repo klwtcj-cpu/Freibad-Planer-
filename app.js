@@ -28,5 +28,15 @@ document.getElementById("status").innerHTML =
     "<b>Mitarbeiter:</b> " + mitarbeiter.join(", ") +
     "<br><b>Wochentage:</b> " + wochentage.join(", ") +
     "<br><b>Schichten:</b> " + schichten.join(", ");
+    // Dienstplan erzeugen
+let dienstplan = [];
 
+for (let tag of wochentage) {
+    for (let schicht of schichten) {
+        dienstplan.push(tag + " - " + schicht);
+    }
+}
+document.getElementById("status").innerHTML +=
+    "<br><br><b>Dienstplan:</b><br>" +
+    dienstplan.join("<br>");
 });
