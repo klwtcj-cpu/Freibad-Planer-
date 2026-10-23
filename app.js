@@ -15,9 +15,9 @@ if (document.getElementById("oli").checked) {
     });
 }
 
-if (document.getElementById("andi").checked) {
+if (document.getElementById("neu").checked) {
     mitarbeiter.push({
-        name: "Andi",
+        name: "Neuer Mitarbeiter",
         prozent: 100,
         schichten: 0,
         arbeitstage: 0,
